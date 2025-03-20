@@ -43,6 +43,7 @@ class OrbList {
     Insert o to the beginning of the list.
     =========================*/
   void addFront(OrbNode o) {
+    front = o;
 
   }//addFront
 
@@ -58,6 +59,14 @@ class OrbList {
     SPRING_LEGNTH apart horizontally.
     =========================*/
   void populate(int n, boolean ordered) {
+    
+    
+    //clear list here idfk 
+    for(int i = 0; i < n; i++){
+      if(i = 0){
+        addfront(i);
+      }
+    }
 
   }//populate
 
