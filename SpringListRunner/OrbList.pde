@@ -21,7 +21,7 @@
 
   When working on these methods, make sure to
   account for null values appropraitely. When the program
-  is run, no NullPointerExceptions should occur.
+  is run, no NullPointerExceptions should occur.x
   =========================*/
 
 class OrbList {
@@ -56,15 +56,24 @@ class OrbList {
     using addFront.
     If ordered is true, the orbs should all
     have the same y coordinate and be spaced
-    SPRING_LEGNTH apart horizontally.
+    SPRING_LENGTH apart horizontally.
     =========================*/
   void populate(int n, boolean ordered) {
-    
+    front = null;
+    float y = height / 2;
+    float s = random(MIN_SIZE, MAX_SIZE);
+    float m = random(MIN_MASS, MAX_MASS);
     
     //clear list here idfk 
     for(int i = 0; i < n; i++){
-      if(i = 0){
-        addfront(i);
+      OrbNode temp;
+      if(ordered){
+        temp = new OrbNode(width/SPRING_LENGTH * i, y,s,m);
+        }
+      else{
+        temp = new OrbNode(random(MAX_SIZE, width - MAX_SIZE), random(MAX_SIZE,height - MAX_SIZE),s,m);
+        }
+      addFront(temp);
       }
     }
 
@@ -77,6 +86,7 @@ class OrbList {
     the display method defined in the OrbNode class.
     =========================*/
   void display() {
+    front.display();
 
   }//display
 
@@ -105,7 +115,7 @@ class OrbList {
 
     Call run on each node in the list.
     =========================*/
-  void run(boolean boucne) {
+  void run(boolean bounce) {
 
   }//applySprings
 
