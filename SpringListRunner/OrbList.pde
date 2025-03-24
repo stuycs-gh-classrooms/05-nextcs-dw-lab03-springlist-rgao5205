@@ -87,7 +87,7 @@ class OrbList {
     =========================*/
   void display() {
     front.display();
-    temp = front;
+    OrbNode temp = front;
     while(temp.next != null){
       temp = temp.next;
       temp.display();
@@ -102,10 +102,10 @@ class OrbList {
     =========================*/
   void applySprings(int springLength, float springK) {
     front.applySprings(SPRING_LENGTH,SPRING_K);
-    temp = front;
+    OrbNode temp = front;
     while(temp.next != null){
       temp = temp.next;
-      temp.display();
+      temp.applySprings(SPRING_LENGTH,SPRING_K);
     }
   }//applySprings
 
@@ -116,7 +116,14 @@ class OrbList {
     to apply gravity crrectly.
     =========================*/
   void applyGravity(Orb other, float gConstant) {
-
+    gravityForce = front.getGravity(front.next,G_CONSTANT);
+    front.applyForce(gravityForce);
+    OrbNode temp = front;
+    while(temp.next != null){
+      temp = temp.next;
+      temp.getGravity(temp.next,G_CONSTANT);
+      temp.applyForce(gravityForce);
+    }
   }//applySprings
 
   /*===========================
@@ -125,7 +132,12 @@ class OrbList {
     Call run on each node in the list.
     =========================*/
   void run(boolean bounce) {
-
+    front.move(bounce);
+    OrbNode temp = front;
+    while(temp.next != null){
+      temp = temp.next;
+      temp.move(bounce);
+    }
   }//applySprings
 
   /*===========================
@@ -136,7 +148,7 @@ class OrbList {
     should now be the first (and so on).
     =========================*/
   void removeFront() {
-
+    front = front.next;
   }//removeFront
 
 
@@ -164,5 +176,6 @@ class OrbList {
     position of o in the list.
     =========================*/
   void removeNode(OrbNode o) {
+    o.previous.next = o.nxet;
   }
 }//OrbList
