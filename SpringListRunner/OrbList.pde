@@ -87,7 +87,11 @@ class OrbList {
     =========================*/
   void display() {
     front.display();
-
+    temp = front;
+    while(temp.next != null){
+      temp = temp.next;
+      temp.display();
+    }
   }//display
 
   /*===========================
@@ -97,7 +101,12 @@ class OrbList {
     element in the list.
     =========================*/
   void applySprings(int springLength, float springK) {
-
+    front.applySprings(SPRING_LENGTH,SPRING_K);
+    temp = front;
+    while(temp.next != null){
+      temp = temp.next;
+      temp.display();
+    }
   }//applySprings
 
   /*===========================
